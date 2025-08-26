@@ -25,9 +25,18 @@ A simple Node.js/Express API for logging meals and managing users.
 ```json
 {
   "user": {
-    /* user object */
+    "name": "Aleena Joseph",
+    "age": 21,
+    "gender": "female",
+    "height": 165,
+    "weight": 42,
+    "_id": "68ade706e378f373df0cc47b",
+    "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
+    "createdAt": "2025-08-26T16:55:34.784Z",
+    "updatedAt": "2025-08-26T16:55:34.784Z",
+    "__v": 0
   },
-  "bmr": 1700
+  "bmr": 1256.21
 }
 ```
 
@@ -41,7 +50,17 @@ A simple Node.js/Express API for logging meals and managing users.
 ```json
 {
   "user": {
-    /* user object, includes bmr */
+    "_id": "68ade706e378f373df0cc47b",
+    "name": "Aleena Joseph",
+    "age": 21,
+    "gender": "female",
+    "height": 165,
+    "weight": 42,
+    "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
+    "createdAt": "2025-08-26T16:55:34.784Z",
+    "updatedAt": "2025-08-26T16:55:34.784Z",
+    "__v": 0,
+    "bmr": 1256.21
   }
 }
 ```
@@ -54,10 +73,9 @@ A simple Node.js/Express API for logging meals and managing users.
 
 ```json
 {
-  "userId": "<userId>",
+  "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
   "meal": "lunch",
   "items": ["Jeera Rice", "Dal"],
-  "loggedAt": "2025-08-26T12:00:00Z" // optional
 }
 ```
 
@@ -66,9 +84,25 @@ A simple Node.js/Express API for logging meals and managing users.
 ```json
 {
   "meal": {
-    /* meal object */
+    "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
+    "meals": "lunch",
+    "items": [
+      "Jeera Rice",
+      "Dal"
+    ],
+    "nutrition": {
+      "calories": 430,
+      "protein": 17,
+      "carbs": 65,
+      "fiber": 7
+    },
+    "loggedAt": "2025-08-26T12:00:00.000Z",
+    "_id": "68ade779e378f373df0cc481",
+    "createdAt": "2025-08-26T16:57:29.010Z",
+    "updatedAt": "2025-08-26T16:57:29.010Z",
+    "__v": 0
   },
-  "unknownItems": ["Unknown Food"] //foods not present in /utils/food_db.js
+  "unknownItems": []
 }
 ```
 
@@ -83,11 +117,34 @@ A simple Node.js/Express API for logging meals and managing users.
 ```json
 {
   "date": "2025-08-26",
-  "userId": "<userId>",
+  "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
   "meals": [
-    /* array of meal objects */
+    {
+      "_id": "68ade779e378f373df0cc481",
+      "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
+      "meals": "lunch",
+      "items": [
+        "Jeera Rice",
+        "Dal"
+      ],
+      "nutrition": {
+        "calories": 430,
+        "protein": 17,
+        "carbs": 65,
+        "fiber": 7
+      },
+      "loggedAt": "2025-08-26T12:00:00.000Z",
+      "createdAt": "2025-08-26T16:57:29.010Z",
+      "updatedAt": "2025-08-26T16:57:29.010Z",
+      "__v": 0
+    }
   ],
-  "totals": { "calories": 1200, "protein": 50, "carbs": 200, "fiber": 20 }
+  "totals": {
+    "calories": 430,
+    "protein": 17,
+    "carbs": 65,
+    "fiber": 7
+  }
 }
 ```
 
@@ -102,7 +159,16 @@ A simple Node.js/Express API for logging meals and managing users.
 
 ```json
 {
-  /* nutrition status object */
+  "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
+  "date": "2025-08-26",
+  "totals": {
+    "calories": 430,
+    "protein": 17,
+    "carbs": 65,
+    "fiber": 7
+  },
+  "bmr": 1256.21,
+  "mealsCount": 1
 }
 ```
 
@@ -114,7 +180,7 @@ A simple Node.js/Express API for logging meals and managing users.
 
 ```json
 {
-  "userId": "<userId>",
+  "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
   "message": "log lunch: Jeera Rice, Dal"
 }
 ```
@@ -123,7 +189,27 @@ A simple Node.js/Express API for logging meals and managing users.
 
 ```json
 {
-  /* same as POST /log_meals */
+  "ok": true,
+  "meal": {
+    "userId": "e2ee17e6-cc08-4ab9-bf3c-fff6b25c63ce",
+    "meals": "lunch",
+    "items": [
+      "Jeera Rice",
+      "Dal"
+    ],
+    "nutrition": {
+      "calories": 430,
+      "protein": 17,
+      "carbs": 65,
+      "fiber": 7
+    },
+    "_id": "68ade8efe378f373df0cc48b",
+    "loggedAt": "2025-08-26T17:03:43.352Z",
+    "createdAt": "2025-08-26T17:03:43.353Z",
+    "updatedAt": "2025-08-26T17:03:43.353Z",
+    "__v": 0
+  },
+  "unknownItems": []
 }
 ```
 
