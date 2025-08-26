@@ -7,24 +7,20 @@ const food_db = require("../utils/food_db");
 // POST /log_meals
 router.post("/log_meals", async (req, res) => {
   try {
-    const { user, userId, meal, items, loggedAt } = req.body;
+    const { userId, meal, items } = req.body;
     if (!meal || !items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Provide meal and items." });
     }
 
-    // find user either by userId 
+    // find user either by userId
     let userDoc = null;
     if (userId) {
       userDoc = await User.findOne({ userId: userId });
-    } else if (user) {
-      userDoc = await User.findOne({ name: new RegExp(`^${user}$`, "i") });
     }
     if (!userDoc) {
-      return res
-        .status(404)
-        .json({
-          error: "User not found. Provide valid userId or user (name).",
-        });
+      return res.status(404).json({
+        error: "User not found. Provide valid userId or user (name).",
+      });
     }
 
     const mealType = meal.toLowerCase();
@@ -61,8 +57,8 @@ router.post("/log_meals", async (req, res) => {
 
     const newMeal = new Meal({
       userId: userDoc.userId,
-      mealType,
-      foodItems: items,
+      meals,
+      items: items,
       nutrition,
       loggedAt: loggedAt ? new Date(loggedAt) : new Date(),
     });
@@ -80,11 +76,9 @@ router.get("/meals", async (req, res) => {
   try {
     const { date, userId } = req.query;
     if (!date || !userId)
-      return res
-        .status(400)
-        .json({
-          error: "Require date and userId query params. date=YYYY-MM-DD",
-        });
+      return res.status(400).json({
+        error: "Require date and userId query params. date=YYYY-MM-DD",
+      });
 
     const start = new Date(date + "T00:00:00");
     const end = new Date(date + "T23:59:59.999");

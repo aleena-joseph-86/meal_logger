@@ -13,12 +13,12 @@ const NutritionSchema = new mongoose.Schema(
 const MealSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true, index: true }, // references User.userId
-    mealType: {
+    meals: {
       type: String,
       required: true,
       enum: ["breakfast", "lunch", "dinner"],
     },
-    foodItems: [{ type: String }],
+    items: [{ type: String }],
     nutrition: { type: NutritionSchema, default: () => ({}) },
     loggedAt: { type: Date, default: () => new Date() },
   },
