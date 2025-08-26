@@ -55,8 +55,8 @@ router.post("/webhook", async (req, res) => {
 
     const meal = new Meal({
       userId: userDoc.userId,
-      mealType,
-      foodItems: items,
+      meals: mealType,
+      items,
       nutrition,
     });
     await meal.save();
