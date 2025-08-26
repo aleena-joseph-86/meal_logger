@@ -7,7 +7,7 @@ const food_db = require("../utils/food_db");
 // POST /log_meals
 router.post("/log_meals", async (req, res) => {
   try {
-    const { userId, meal, items } = req.body;
+    const { userId, meal, items, loggedAt } = req.body;
     if (!meal || !items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Provide meal and items." });
     }
@@ -57,8 +57,8 @@ router.post("/log_meals", async (req, res) => {
 
     const newMeal = new Meal({
       userId: userDoc.userId,
-      meals,
-      items: items,
+      meals: mealType,
+      items,
       nutrition,
       loggedAt: loggedAt ? new Date(loggedAt) : new Date(),
     });
